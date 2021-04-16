@@ -18,6 +18,7 @@ dev_dependencies:
     sdk: flutter
   build_runner: any
   json_serializable: ^4.1.0
+  json_annotation: ^4.0.1
   equatable: ^2.0.0
   mockito: ^5.0.4
 
