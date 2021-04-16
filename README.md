@@ -1,8 +1,8 @@
 # single_item_storage
 
 A single item storage abstraction with CRUD operations.
-Use it for testing, easily swapping implementations, and abstracting complex 
-storage implementations.  
+Use it for abstracting (complex) storage implementations, testing, 
+and quickly swapping implementations.  
 
 This package provides a few implementations, but it's intended to be just a base 
 for you to implement and provide specific implementation - file, shared preferences or user defaults, etc. 
@@ -26,3 +26,9 @@ Example:
     // delete item
     await storage.delete();
 ```
+
+To add [shared_preferences] implementation of `Storage` use the [single_item_shared_prefs]
+addon package.
+
+[shared_preferences]: https://pub.dev/packages/shared_preferences 
+[single_item_shared_prefs]: https://pub.dev/packages/single_item_shared_prefs
