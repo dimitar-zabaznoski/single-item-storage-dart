@@ -1,7 +1,7 @@
 import 'package:mockito/mockito.dart';
 import 'package:single_item_storage/cached_storage.dart';
 import 'package:single_item_storage/memory_storage.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 import 'spy_storage.dart';
 import 'storage_base_test.dart';
