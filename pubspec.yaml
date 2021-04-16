@@ -1,6 +1,6 @@
 name: single_item_storage
 description: A single item storage abstraction.
-version: 1.0.1
+version: 1.0.1+1
 homepage: https://github.com/dimitar-zabaznoski/single-item-storage-dart
 
 environment:
