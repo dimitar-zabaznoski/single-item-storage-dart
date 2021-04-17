@@ -15,11 +15,11 @@ Create a new instance by providing `fromMap` and `toMap` item
 converters, `itemKey` as key for this item in shared preferences,
 and an optional `sharedPreferences` instance. 
 
-    Storage<User> storage = SharedPrefsStorage<User>(
+    Storage<User> storage = CachedStorage<User>(SharedPrefsStorage(
       itemKey: 'model.user.key',
       fromMap: (map) => User.fromMap(map),
       toMap: (item) => item.toMap(),
-    );
+    ));
     
     @JsonSerializable()
     class User {
@@ -33,6 +33,9 @@ and an optional `sharedPreferences` instance.
     }
 
 If the `sharedPreferences` is omitted, then `SharedPreferences.getInstance` is used.
+
+Notice that the `SharedPrefsStorage` is wrapped in `CachedStorage` to add in-memory
+caching for better performance.
 
 When defining the to/from map converter mind that the map values can only be: 
 number, boolean, string, null, list or a map with string keys. As defined in 
