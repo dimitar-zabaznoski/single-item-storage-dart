@@ -38,7 +38,7 @@ Notice that the `SharedPrefsStorage` is wrapped in `CachedStorage` to add in-mem
 caching for better performance.
 
 When defining the to/from map converter mind that the map values can only be: 
-number, boolean, string, null, list or a map with string keys. As defined in 
+number, boolean, string, null, list or a map with string keys as defined in 
 `json.encode` and `json.decode` from the `dart:convert` package.
 
 _This example uses [json_serializable] as Map converter for convenience._
