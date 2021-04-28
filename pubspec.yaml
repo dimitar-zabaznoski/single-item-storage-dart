@@ -2,14 +2,14 @@ name: single_item_storage
 description: A single item storage abstraction with CRUD operations.
   Use it for abstracting (complex) storage implementations, testing,
   and quickly swapping implementations.
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/dimitar-zabaznoski/single-item-storage-dart
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  async: ^2.6.0
+  async: any
 
 dev_dependencies:
   test: any

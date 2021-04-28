@@ -16,3 +16,7 @@
 
 * Added StubStorage
 * Added Observed Storage that has listener for changes
+
+## [1.0.3]
+
+* Used any version for async dependency to avoid version conflicts
