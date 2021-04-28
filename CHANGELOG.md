@@ -11,3 +11,8 @@
 ## [1.0.1]
 
 * Remove unused Flutter dependency.
+
+## [1.0.2]
+
+* Added StubStorage
+* Added Observed Storage that has listener for changes
