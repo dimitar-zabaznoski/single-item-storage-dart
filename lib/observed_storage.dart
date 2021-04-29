@@ -27,6 +27,12 @@ class ObservedStorage<E> implements Storage<E> {
         ..add(_streamController.stream))
       .stream;
 
+  /// Returns `Storage<E>` that will not trigger [updates] or [updatesSticky].
+  ///
+  /// <i>Useful when you are already observing the changes and don't want to be
+  /// notified about your own actions.</i>
+  Storage<E> get silent => _inner;
+
   Future<E?> get() => _inner.get();
 
   @override

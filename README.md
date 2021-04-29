@@ -1,8 +1,7 @@
 # single_item_storage
 
 A single item storage abstraction with CRUD operations.
-Use it for abstracting (complex) storage implementations, testing, 
-and quickly swapping implementations.  
+Use it for abstracting storage implementations, for testing, quickly swapping implementations, etc.  
 
 This package provides a few implementations, but it's intended to be just a base 
 for you to implement and provide specific implementation - file, shared preferences or user defaults, etc. 

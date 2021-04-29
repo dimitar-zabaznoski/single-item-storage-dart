@@ -1,7 +1,8 @@
 import 'package:single_item_storage/storage.dart';
 
 /// Const implementation that won't store any items.
-/// Useful for default/null values.
+///
+/// _Useful for default/null values._
 class StubStorage<E> implements Storage<E> {
   const StubStorage();
 

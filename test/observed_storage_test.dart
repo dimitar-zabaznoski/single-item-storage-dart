@@ -1,3 +1,4 @@
+import 'package:mockito/mockito.dart';
 import 'package:single_item_storage/memory_storage.dart';
 import 'package:single_item_storage/observed_storage.dart';
 import 'package:test/test.dart';
@@ -18,6 +19,10 @@ void main() {
 
   setUp(() {
     itemStore = ObservedStorage(MemoryStorage());
+  });
+
+  tearDown(() async {
+    await itemStore.teardown();
   });
 
   test('updates no value preset', () async {
@@ -76,5 +81,15 @@ void main() {
     await itemStore.save(1);
     await itemStore.save(null);
     await itemStore.save(3);
+  });
+
+  test('silent updates', () async {
+    expect(itemStore.updates, neverEmits(anything));
+
+    await itemStore.silent.save(0);
+    await itemStore.silent.save(1);
+    await itemStore.silent.save(0);
+
+    await itemStore.teardown(); //closes the updates stream
   });
 }

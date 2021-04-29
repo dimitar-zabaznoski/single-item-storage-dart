@@ -1,7 +1,8 @@
 import 'storage.dart';
 
 /// Storage implementation wrapper that adds in-memory cache functionality.
-/// Use it to wrap time consuming or performance heavy storage implementations.
+///
+/// _Use it to wrap time consuming or performance heavy storage implementations._
 class CachedStorage<E> implements Storage<E> {
   final Storage<E> _inner;
   E? _cachedItem;
