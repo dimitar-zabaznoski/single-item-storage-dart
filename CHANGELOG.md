@@ -20,3 +20,12 @@
 ## [1.0.3]
 
 * Used any version for async dependency to avoid version conflicts
+
+## [1.0.4]
+
+* Added silent Storage interactions to ObservedStorage.
+
+  The following will not trigger `updates` or `updatesSticky`:
+  
+  `myObservedStorage.silent.save(item)`
+  
