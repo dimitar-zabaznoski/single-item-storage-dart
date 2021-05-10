@@ -2,10 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:single_item_shared_prefs/single_item_shared_prefs.dart';
 import 'package:single_item_shared_prefs/src/mapped_prefs_storage.dart';
+import 'package:single_item_shared_prefs/src/primitive_prefs_storage.dart';
 import 'package:single_item_storage/storage.dart';
 
-/// [Storage] implementation that uses [SharedPreferences] and dart JSON
-/// converters to store items.
+/// [Storage] implementation that uses [SharedPreferences] to store items.
 abstract class SharedPrefsStorage<E> implements Storage<E> {
   @protected
   final String itemKey;
@@ -24,6 +24,16 @@ abstract class SharedPrefsStorage<E> implements Storage<E> {
     SharedPreferences? sharedPreferences,
   }) =>
       MappedPrefsStorage(toMap, fromMap, itemKey, sharedPreferences);
+
+  /// [Storage] implementation that uses [SharedPreferences]
+  /// to store primitive items that don't need a converter.
+  ///
+  /// Supported types: `bool`, `double`, `int`, `String`, `List<String>`.
+  factory SharedPrefsStorage.primitive({
+    required String itemKey,
+    SharedPreferences? sharedPreferences,
+  }) =>
+      PrimitivePrefsStorage(itemKey, sharedPreferences);
 
   @protected
   SharedPrefsStorage.base(this.itemKey, [this.sharedPreferences]);

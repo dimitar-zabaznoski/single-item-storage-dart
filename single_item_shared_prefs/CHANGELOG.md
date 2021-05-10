@@ -7,3 +7,8 @@
 ## [0.0.2]
 
 * README update.
+
+## [0.0.3]
+
+* Added implementation for primitives.
+  Use `SharedPrefsStorage<int>.primitive(itemKey: 'cow_counter')`

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:single_item_shared_prefs/src/mapped_prefs_storage.dart';
 import 'package:single_item_shared_prefs/src/shared_prefs_storage.dart';
 
 import 'test_classes.dart';
@@ -22,7 +23,7 @@ final Place veryNullPlace = Place(
   nearbyToilets: [],
 );
 
-/// Tests for [SharedPrefsStorage]
+/// Tests for [MappedPrefsStorage]
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   SharedPreferences.setMockInitialValues({});

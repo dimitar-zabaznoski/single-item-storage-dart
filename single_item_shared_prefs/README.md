@@ -32,6 +32,17 @@ and an optional `sharedPreferences` instance.
       User(this.id, this.email);
     }
 
+To store primitive values that don't need a converter use the .primitive named constructor.
+
+    /* Supported primitive types: 
+     - bool
+     - double
+     - int
+     - String
+     - List<String>
+     */
+    SharedPrefsStorage<int>.primitive(itemKey: 'cow_counter')
+
 If the `sharedPreferences` is omitted, then `SharedPreferences.getInstance` is used.
 
 Notice that the `SharedPrefsStorage` is wrapped in `CachedStorage` to add in-memory
