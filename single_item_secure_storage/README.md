@@ -15,11 +15,11 @@ Create a new instance by providing `fromMap` and `toMap` item
 converters, `itemKey` as key for this item in keychain,
 and an optional `secureStore` instance. 
 
-    Storage<User> storage = SecureStorage<User>(
+    Storage<User> storage = CachedStorage<User>(SecureStorage(
       itemKey: 'model.user.key',
       fromMap: (map) => User.fromMap(map),
       toMap: (item) => item.toMap(),
-    );
+    ));
 
     @JsonSerializable()
     class User {

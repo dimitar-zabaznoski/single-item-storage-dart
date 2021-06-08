@@ -29,9 +29,11 @@ In core module:
 
 In add-on modules:
 - **SharedPrefsStorage**, in package [single_item_shared_prefs] - SharedPreferences[[⬈]][shared_preferences] implementation of `Storage<E>`
+- **SecureStorage**, in package [single_item_secure_storage] - FlutterSecureStorage[[⬈]][flutter_secure_storage] implementation of `Storage<E>`
 
 [shared_preferences]: https://pub.dev/packages/shared_preferences 
 [single_item_shared_prefs]: https://pub.dev/packages/single_item_shared_prefs
+[flutter_secure_storage]: https://pub.dev/packages/flutter_secure_storage
 
 
 ## Example
