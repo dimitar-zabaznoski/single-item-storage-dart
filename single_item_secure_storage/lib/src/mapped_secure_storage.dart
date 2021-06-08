@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:single_item_secure_sorage/src/map_adapter.dart';
-import 'package:single_item_secure_sorage/src/secure_storage.dart';
+import 'package:single_item_secure_storage/src/map_adapter.dart';
+import 'package:single_item_secure_storage/src/secure_storage.dart';
 import 'package:single_item_storage/storage.dart';
 
 /// [Storage] implementation that uses [FlutterSecureStorage] and dart JSON
@@ -17,24 +17,22 @@ class MappedSecureStorage<E> extends SecureStorage<E> {
   /// Makes a new instance using the provided [fromMap] and [toMap] item
   /// converters, [itemKey] as key in the [secureStorage] instance.
   MappedSecureStorage(
-      this.toMap,
-      this.fromMap,
-      String itemKey, [
-        FlutterSecureStorage? secureStorage,
-      ]) : super.base(itemKey, secureStorage);
+    this.toMap,
+    this.fromMap,
+    String itemKey,
+    FlutterSecureStorage secureStorage,
+  ) : super.base(itemKey, secureStorage);
 
   @override
   Future<E> save(E item) async {
-    await ensureStorageSet();
-    await secureStorage!.write(key: itemKey, value: jsonEncode(toMap(item)));
+    await secureStorage.write(key: itemKey, value: jsonEncode(toMap(item)));
 
     return item;
   }
 
   @override
   Future<E?> get() async {
-    await ensureStorageSet();
-    final String? itemJson = await secureStorage!.read(key: itemKey);
+    final String? itemJson = await secureStorage.read(key: itemKey);
 
     return itemJson == null ? null : fromMap(jsonDecode(itemJson));
   }

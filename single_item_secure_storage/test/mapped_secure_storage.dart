@@ -1,11 +1,11 @@
-
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:single_item_secure_sorage/src/secure_storage.dart';
+import 'package:single_item_secure_storage/src/secure_storage.dart';
 
+import 'mock_method_handler.dart';
 import 'test_classes.dart';
 
 final Place theNorthPole = Place(
@@ -30,7 +30,10 @@ void main() {
 
   late SecureStorage<Place> storage;
 
-  setUp(() async {
+  setUp(() {
+    const MethodChannel('plugins.it_nomads.com/flutter_secure_storage')
+        .setMockMethodCallHandler(mockMethodHandler());
+
     storage = SecureStorage<Place>(
         itemKey: 'model.place.key',
         toMap: (item) => item.toMap(),
@@ -42,29 +45,8 @@ void main() {
     await storage.delete();
   });
 
-  setupMockChannel(Place? place) {
-    const MethodChannel('plugins.it_nomads.com/flutter_secure_storage')
-        .setMockMethodCallHandler((MethodCall methodCall) async {
 
-          if (place == null) {
-            return null;
-          }
-
-          if (methodCall.method == 'write') {
-            return jsonEncode(place.toMap());
-          }
-
-          if (methodCall.method == 'read') {
-            return jsonEncode(place.toMap());
-          }
-
-          return null;
-    });
-  }
-
-  test("VerifySharedPreferences", () async {
-    setupMockChannel(theNorthPole);
-
+  test("VerifyItemActuallySaved", () async {
     final savedItem = await storage.save(theNorthPole);
 
     final FlutterSecureStorage secureStorage = FlutterSecureStorage();
@@ -79,8 +61,6 @@ void main() {
   });
 
   test("SaveOneFindOne", () async {
-    setupMockChannel(theNorthPole);
-
     final savedItem = await storage.save(theNorthPole);
     final retrievedItem = await storage.get();
 
@@ -89,8 +69,6 @@ void main() {
   });
 
   test("SaveOneFindOneNullValues", () async {
-    setupMockChannel(veryNullPlace);
-
     final savedItem = await storage.save(veryNullPlace);
     final retrievedItem = await storage.get();
 
@@ -99,9 +77,7 @@ void main() {
   });
 
   test("SaveManyOverwrite", () async {
-    setupMockChannel(veryNullPlace);
     final savedItem1 = await storage.save(veryNullPlace);
-    setupMockChannel(theNorthPole);
     final savedItem2 = await storage.save(theNorthPole);
     final retrievedItem = await storage.get();
 
@@ -111,22 +87,18 @@ void main() {
   });
 
   test("RetrieveNonExisting", () async {
-    setupMockChannel(null);
     final retrievedItem = await storage.get();
     expect(retrievedItem, isNull);
   });
 
   test("Delete", () async {
-    setupMockChannel(theNorthPole);
     await storage.save(theNorthPole);
 
-    setupMockChannel(null);
     expect(storage.delete(), completes);
     expect(await storage.get(), isNull);
   });
 
   test("DeleteNonExisting", () async {
-    setupMockChannel(null);
 
     expect(storage.delete(), completes);
     expect(await storage.get(), isNull);

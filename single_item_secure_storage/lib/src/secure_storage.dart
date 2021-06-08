@@ -1,9 +1,8 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:single_item_secure_sorage/src/map_adapter.dart';
-import 'package:single_item_secure_sorage/src/mapped_secure_storage.dart';
-import 'package:single_item_secure_sorage/src/primitive_secure_storage.dart';
+import 'package:single_item_secure_storage/src/map_adapter.dart';
+import 'package:single_item_secure_storage/src/mapped_secure_storage.dart';
+import 'package:single_item_secure_storage/src/primitive_secure_storage.dart';
 import 'package:single_item_storage/storage.dart';
 
 /// [Storage] implementation that uses [FlutterSecureStorage] to store items.
@@ -11,7 +10,7 @@ abstract class SecureStorage<E> implements Storage<E> {
   @protected
   final String itemKey;
   @protected
-  FlutterSecureStorage? secureStorage;
+  FlutterSecureStorage secureStorage;
 
   /// Makes a new instance using the provided [fromMap] and [toMap] item
   /// converters, [itemKey] as key in the [secureStorage] instance.
@@ -22,7 +21,7 @@ abstract class SecureStorage<E> implements Storage<E> {
     required ToMap<E> toMap,
     required FromMap<E> fromMap,
     required String itemKey,
-    FlutterSecureStorage? secureStorage,
+    FlutterSecureStorage secureStorage = const FlutterSecureStorage(),
   }) =>
       MappedSecureStorage(toMap, fromMap, itemKey, secureStorage);
 
@@ -32,24 +31,15 @@ abstract class SecureStorage<E> implements Storage<E> {
   /// Supported types: `bool`, `double`, `int`, `String`.
   factory SecureStorage.primitive({
     required String itemKey,
-    FlutterSecureStorage? sharedPreferences,
+    FlutterSecureStorage secureStorage = const FlutterSecureStorage(),
   }) =>
-      PrimitiveSecureStorage(itemKey, sharedPreferences);
+      PrimitiveSecureStorage(itemKey, secureStorage);
 
   @protected
-  SecureStorage.base(this.itemKey, [this.secureStorage]);
+  SecureStorage.base(this.itemKey, this.secureStorage);
 
   @override
   Future<void> delete() async {
-    await ensureStorageSet();
-    await secureStorage!.delete(key: itemKey);
-  }
-
-  @protected
-  Future<FlutterSecureStorage> ensureStorageSet() async {
-    if (secureStorage == null) {
-      secureStorage = FlutterSecureStorage();
-    }
-    return secureStorage!;
+    await secureStorage.delete(key: itemKey);
   }
 }

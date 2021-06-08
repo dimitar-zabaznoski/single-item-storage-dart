@@ -1,9 +1,9 @@
-
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:single_item_secure_sorage/src/secure_storage.dart';
+import 'package:single_item_secure_storage/src/secure_storage.dart';
 
+import 'mock_method_handler.dart';
 import 'test_classes.dart';
 
 const itemKey = 'item_key';
@@ -11,6 +11,11 @@ const itemKey = 'item_key';
 /// Tests for [PrimitiveSecureStorage]
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  setUp(() {
+    const MethodChannel('plugins.it_nomads.com/flutter_secure_storage')
+        .setMockMethodCallHandler(mockMethodHandler());
+  });
 
 
   test('unsupported type constructor', () {
@@ -21,21 +26,9 @@ void main() {
   });
 
   test('bool', () async {
-    const MethodChannel('plugins.it_nomads.com/flutter_secure_storage')
-        .setMockMethodCallHandler((MethodCall methodCall) async {
-      if (methodCall.method == 'write') {
-        return 'true';
-      }
-
-      if (methodCall.method == 'read') {
-        return 'true';
-      }
-
-      return null;
-    });
-
     final storage = SecureStorage<bool>.primitive(itemKey: itemKey);
-    final FlutterSecureStorage secureStorage = await storage.ensureStorageSet();
+    // ignore: invalid_use_of_protected_member
+    final FlutterSecureStorage secureStorage = storage.secureStorage;
 
     final savedItem = await storage.save(true);
     final itemInStorage = await secureStorage.read(key: itemKey);
@@ -49,21 +42,9 @@ void main() {
   });
 
   test('string', () async {
-    const MethodChannel('plugins.it_nomads.com/flutter_secure_storage')
-        .setMockMethodCallHandler((MethodCall methodCall) async {
-      if (methodCall.method == 'write') {
-        return 'test_string';
-      }
-
-      if (methodCall.method == 'read') {
-        return 'test_string';
-      }
-
-      return null;
-    });
-
     final storage = SecureStorage<String>.primitive(itemKey: itemKey);
-    final FlutterSecureStorage secureStorage = await storage.ensureStorageSet();
+    // ignore: invalid_use_of_protected_member
+    final FlutterSecureStorage secureStorage = storage.secureStorage;
 
     final savedItem = await storage.save('test_string');
     final itemInStorage = await secureStorage.read(key: itemKey);
@@ -77,21 +58,9 @@ void main() {
   });
 
   test('double', () async {
-    const MethodChannel('plugins.it_nomads.com/flutter_secure_storage')
-        .setMockMethodCallHandler((MethodCall methodCall) async {
-      if (methodCall.method == 'write') {
-        return '3.14';
-      }
-
-      if (methodCall.method == 'read') {
-        return '3.14';
-      }
-
-      return null;
-    });
-
     final storage = SecureStorage<double>.primitive(itemKey: itemKey);
-    final FlutterSecureStorage secureStorage = await storage.ensureStorageSet();
+    // ignore: invalid_use_of_protected_member
+    final FlutterSecureStorage secureStorage = storage.secureStorage;
 
     final savedItem = await storage.save(3.14);
     final itemInStorage = await secureStorage.read(key: itemKey);
@@ -105,21 +74,9 @@ void main() {
   });
 
   test('int', () async {
-    const MethodChannel('plugins.it_nomads.com/flutter_secure_storage')
-        .setMockMethodCallHandler((MethodCall methodCall) async {
-      if (methodCall.method == 'write') {
-        return '10';
-      }
-
-      if (methodCall.method == 'read') {
-        return '10';
-      }
-
-      return null;
-    });
-
     final storage = SecureStorage<int>.primitive(itemKey: itemKey);
-    final FlutterSecureStorage secureStorage = await storage.ensureStorageSet();
+    // ignore: invalid_use_of_protected_member
+    final FlutterSecureStorage secureStorage = storage.secureStorage;
 
     final savedItem = await storage.save(10);
     final itemInStorage = await secureStorage.read(key: itemKey);
