@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:single_item_secure_storage/single_item_secure_sorage.dart';
+import 'package:single_item_secure_storage/single_item_secure_storage.dart';
 import 'package:single_item_shared_prefs/single_item_shared_prefs.dart';
 import 'package:single_item_storage/cached_storage.dart';
 import 'package:single_item_storage/storage.dart';
