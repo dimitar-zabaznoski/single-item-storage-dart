@@ -1,9 +1,6 @@
 name: single_item_secure_storage
 description: Keychain/Keystore persistent Storage implementation.
-  This package is an addon to the [single_item_storage] package and offers
-  a Storage implementation using the [flutter_secure_storage] package and dart
-  JSON converters, `json.encode` and `json.decode`, to store items.
-version: 0.0.1
+version: 0.0.1+1
 homepage: https://github.com/dimitar-zabaznoski/single-item-storage-dart
 
 environment:
