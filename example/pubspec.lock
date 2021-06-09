@@ -201,9 +201,9 @@ packages:
   single_item_secure_storage:
     dependency: "direct main"
     description:
-      path: "../single_item_secure_storage"
-      relative: true
-    source: path
+      name: single_item_secure_storage
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.1"
   single_item_shared_prefs:
     dependency: "direct main"
