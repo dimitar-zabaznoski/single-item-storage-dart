@@ -5,6 +5,8 @@ import 'package:single_item_secure_storage/src/mapped_secure_storage.dart';
 import 'package:single_item_secure_storage/src/primitive_secure_storage.dart';
 import 'package:single_item_storage/storage.dart';
 
+export 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 /// [Storage] implementation that uses [FlutterSecureStorage] to store items.
 abstract class SecureStorage<E> implements Storage<E> {
   @protected

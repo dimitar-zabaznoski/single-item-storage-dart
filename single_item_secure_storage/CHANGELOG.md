@@ -1,3 +1,7 @@
+## 0.0.3
+
+* Exported flutter_secure_storage.dart for convenience
+
 ## 0.0.2
 
 * Added iOS and Android secure storage options 
