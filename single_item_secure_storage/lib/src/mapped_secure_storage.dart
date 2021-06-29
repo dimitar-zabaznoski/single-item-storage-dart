@@ -17,22 +17,40 @@ class MappedSecureStorage<E> extends SecureStorage<E> {
   /// Makes a new instance using the provided [fromMap] and [toMap] item
   /// converters, [itemKey] as key in the [secureStorage] instance.
   MappedSecureStorage(
-    this.toMap,
-    this.fromMap,
-    String itemKey,
-    FlutterSecureStorage secureStorage,
-  ) : super.base(itemKey, secureStorage);
+      this.toMap,
+      this.fromMap,
+      String itemKey,
+      FlutterSecureStorage secureStorage, {
+        IOSOptions? iosOptions,
+        AndroidOptions? androidOptions,
+      }) : super.base(
+    itemKey,
+    secureStorage,
+    iosOptions: iosOptions,
+    androidOptions: androidOptions,
+  );
 
   @override
   Future<E> save(E item) async {
-    await secureStorage.write(key: itemKey, value: jsonEncode(toMap(item)));
+    print('Options ${iosOptions?.params.toString()}');
+
+    await secureStorage.write(
+      key: itemKey,
+      value: jsonEncode(toMap(item)),
+      iOptions: iosOptions,
+      aOptions: androidOptions,
+    );
 
     return item;
   }
 
   @override
   Future<E?> get() async {
-    final String? itemJson = await secureStorage.read(key: itemKey);
+    final String? itemJson = await secureStorage.read(
+      key: itemKey,
+      iOptions: iosOptions,
+      aOptions: androidOptions,
+    );
 
     return itemJson == null ? null : fromMap(jsonDecode(itemJson));
   }

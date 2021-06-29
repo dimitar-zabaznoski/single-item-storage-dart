@@ -11,6 +11,10 @@ abstract class SecureStorage<E> implements Storage<E> {
   final String itemKey;
   @protected
   FlutterSecureStorage secureStorage;
+  @protected
+  final IOSOptions? iosOptions;
+  @protected
+  final AndroidOptions? androidOptions;
 
   /// Makes a new instance using the provided [fromMap] and [toMap] item
   /// converters, [itemKey] as key in the [secureStorage] instance.
@@ -22,8 +26,17 @@ abstract class SecureStorage<E> implements Storage<E> {
     required FromMap<E> fromMap,
     required String itemKey,
     FlutterSecureStorage secureStorage = const FlutterSecureStorage(),
+    IOSOptions? iosOptions,
+    AndroidOptions? androidOptions,
   }) =>
-      MappedSecureStorage(toMap, fromMap, itemKey, secureStorage);
+      MappedSecureStorage(
+        toMap,
+        fromMap,
+        itemKey,
+        secureStorage,
+        iosOptions: iosOptions,
+        androidOptions: androidOptions,
+      );
 
   /// [Storage] implementation that uses [FlutterSecureStorage]
   /// to store primitive items that don't need a converter.
@@ -32,14 +45,30 @@ abstract class SecureStorage<E> implements Storage<E> {
   factory SecureStorage.primitive({
     required String itemKey,
     FlutterSecureStorage secureStorage = const FlutterSecureStorage(),
+    IOSOptions? iosOptions,
+    AndroidOptions? androidOptions,
   }) =>
-      PrimitiveSecureStorage(itemKey, secureStorage);
+      PrimitiveSecureStorage(
+        itemKey,
+        secureStorage,
+        iosOptions: iosOptions,
+        androidOptions: androidOptions,
+      );
 
   @protected
-  SecureStorage.base(this.itemKey, this.secureStorage);
+  SecureStorage.base(
+      this.itemKey,
+      this.secureStorage, {
+        this.androidOptions,
+        this.iosOptions,
+      });
 
   @override
   Future<void> delete() async {
-    await secureStorage.delete(key: itemKey);
+    await secureStorage.delete(
+      key: itemKey,
+      iOptions: iosOptions,
+      aOptions: androidOptions,
+    );
   }
 }
