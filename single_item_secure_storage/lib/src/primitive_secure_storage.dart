@@ -7,14 +7,28 @@ import 'package:single_item_storage/storage.dart';
 ///
 /// Supported types: `bool`, `double`, `int` and `String`
 class PrimitiveSecureStorage<E> extends SecureStorage<E> {
-  PrimitiveSecureStorage(String itemKey, FlutterSecureStorage secureStorage)
-      : assert(E == bool || E == double || E == int || E == String),
-        super.base(itemKey, secureStorage);
+  PrimitiveSecureStorage(
+      String itemKey,
+      FlutterSecureStorage secureStorage, {
+        IOSOptions? iosOptions,
+        AndroidOptions? androidOptions,
+      })  : assert(E == bool || E == double || E == int || E == String),
+        super.base(
+        itemKey,
+        secureStorage,
+        iosOptions: iosOptions,
+        androidOptions: androidOptions,
+      );
 
   @override
   Future<E> save(E item) async {
     if (item is bool || item is double || item is int || item is String) {
-      await secureStorage.write(key: itemKey, value: item.toString());
+      await secureStorage.write(
+        key: itemKey,
+        value: item.toString(),
+        aOptions: androidOptions,
+        iOptions: iosOptions,
+      );
       return item;
     } else {
       throw ArgumentError('Item of unsupported type: ${E.runtimeType}');
@@ -23,7 +37,11 @@ class PrimitiveSecureStorage<E> extends SecureStorage<E> {
 
   @override
   Future<E?> get() async {
-    final storedValue = await secureStorage.read(key: itemKey);
+    final storedValue = await secureStorage.read(
+      key: itemKey,
+      aOptions: androidOptions,
+      iOptions: iosOptions,
+    );
 
     var result;
     if (E == bool) {
