@@ -1,4 +1,4 @@
-## 1.0.0
+## 0.0.2
 
 * Added iOS and Android secure storage options 
 
