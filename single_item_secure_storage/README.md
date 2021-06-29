@@ -13,12 +13,15 @@ JSON converters, `json.encode` and `json.decode`, to store items.
 
 Create a new instance by providing `fromMap` and `toMap` item 
 converters, `itemKey` as key for this item in keychain,
-and an optional `secureStore` instance. 
+and an optional `secureStore` instance. Additionally you can add iOS and Android options.
+If options are not added, the default ones will be used.  
 
     Storage<User> storage = CachedStorage<User>(SecureStorage(
       itemKey: 'model.user.key',
       fromMap: (map) => User.fromMap(map),
       toMap: (item) => item.toMap(),
+      iosOptions: IOSOptions(), 
+      androidOptions: AndroidOptions(),
     ));
 
     @JsonSerializable()
