@@ -23,6 +23,10 @@ abstract class SecureStorage<E> implements Storage<E> {
   ///
   /// If the [secureStorage] param is omitted,
   /// then a new instance of [FlutterSecureStorage] is used.
+  ///
+  /// **Note:** On iOS the secure storage is not deleted when the app is uninstalled.
+  /// This is sometimes desired and other times not,
+  /// whatever the case keep it in mind when designing your use case.
   factory SecureStorage({
     required ToMap<E> toMap,
     required FromMap<E> fromMap,

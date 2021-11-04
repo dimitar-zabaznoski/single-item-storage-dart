@@ -54,3 +54,14 @@ number, boolean, string, null, list or a map with string keys as defined in
 _This example uses [json_serializable] as Map converter for convenience._
 
 [json_serializable]: https://pub.dev/packages/json_serializable
+
+---
+
+**Note on iOS usage**
+
+On iOS the secure storage is not deleted when the app is uninstalled.
+This is sometimes desired and other times not,
+whatever the case keep it in mind when designing your use case.
+More information can be found on the following [link][ios_app_uninstall].
+
+[ios_app_uninstall]: https://developer.apple.com/forums/thread/36442
