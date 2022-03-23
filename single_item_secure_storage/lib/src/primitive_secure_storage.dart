@@ -1,4 +1,3 @@
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:single_item_secure_storage/src/secure_storage.dart';
 import 'package:single_item_storage/storage.dart';
 
@@ -8,17 +7,17 @@ import 'package:single_item_storage/storage.dart';
 /// Supported types: `bool`, `double`, `int` and `String`
 class PrimitiveSecureStorage<E> extends SecureStorage<E> {
   PrimitiveSecureStorage(
-      String itemKey,
-      FlutterSecureStorage secureStorage, {
-        IOSOptions? iosOptions,
-        AndroidOptions? androidOptions,
-      })  : assert(E == bool || E == double || E == int || E == String),
+    String itemKey,
+    FlutterSecureStorage secureStorage, {
+    IOSOptions? iosOptions,
+    AndroidOptions? androidOptions,
+  })  : assert(E == bool || E == double || E == int || E == String),
         super.base(
-        itemKey,
-        secureStorage,
-        iosOptions: iosOptions,
-        androidOptions: androidOptions,
-      );
+          itemKey,
+          secureStorage,
+          iosOptions: iosOptions,
+          androidOptions: androidOptions,
+        );
 
   @override
   Future<E> save(E item) async {

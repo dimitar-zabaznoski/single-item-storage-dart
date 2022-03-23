@@ -1,3 +1,7 @@
+## 1.0.5
+
+* Dependencies update
+
 ## 1.0.4
 
 * Added silent Storage interactions to ObservedStorage.

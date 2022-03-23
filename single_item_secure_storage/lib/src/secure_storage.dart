@@ -63,11 +63,11 @@ abstract class SecureStorage<E> implements Storage<E> {
 
   @protected
   SecureStorage.base(
-      this.itemKey,
-      this.secureStorage, {
-        this.androidOptions,
-        this.iosOptions,
-      });
+    this.itemKey,
+    this.secureStorage, {
+    this.androidOptions,
+    this.iosOptions,
+  });
 
   @override
   Future<void> delete() async {

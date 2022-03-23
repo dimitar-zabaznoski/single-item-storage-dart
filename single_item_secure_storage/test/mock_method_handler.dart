@@ -17,6 +17,10 @@ Future<dynamic>? Function(MethodCall call)? mockMethodHandler() {
       return null;
     }
 
+    if (methodCall.method == 'containsKey') {
+      return Future.value(true);
+    }
+
     return null;
   };
 }

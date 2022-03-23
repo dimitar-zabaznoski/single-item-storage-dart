@@ -21,23 +21,23 @@ class Place extends Equatable {
   Map<String, dynamic> toMap() => _$PlaceToJson(this);
 
   Place(
-      this.placeName,
-      this.coordinates, {
-        required Iterable<String> nearbyGasPumps,
-        required Iterable<bool> nearbyMcDonalds,
-        required Iterable<Coordinates> nearbyToilets,
-      })   : this.nearbyGasPumps = nearbyGasPumps.toList(growable: false),
+    this.placeName,
+    this.coordinates, {
+    required Iterable<String> nearbyGasPumps,
+    required Iterable<bool> nearbyMcDonalds,
+    required Iterable<Coordinates> nearbyToilets,
+  })  : this.nearbyGasPumps = nearbyGasPumps.toList(growable: false),
         this.nearbyMcDonalds = nearbyMcDonalds.toList(growable: false),
         this.nearbyToilets = nearbyToilets.toList(growable: false);
 
   @override
   List<Object?> get props => [
-    placeName,
-    coordinates,
-    nearbyMcDonalds,
-    nearbyGasPumps,
-    nearbyToilets,
-  ];
+        placeName,
+        coordinates,
+        nearbyMcDonalds,
+        nearbyGasPumps,
+        nearbyToilets,
+      ];
 }
 
 /// Test class.

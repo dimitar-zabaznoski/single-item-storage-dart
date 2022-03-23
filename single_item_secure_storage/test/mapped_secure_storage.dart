@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:single_item_secure_storage/src/secure_storage.dart';
 
@@ -37,23 +36,24 @@ void main() {
     storage = SecureStorage<Place>(
         itemKey: 'model.place.key',
         toMap: (item) => item.toMap(),
-        fromMap:  (map) => Place.fromMap(map)
-    );
+        fromMap: (map) => Place.fromMap(map));
   });
 
   tearDown(() async {
     await storage.delete();
   });
 
-
   test("VerifyItemActuallySaved", () async {
     final savedItem = await storage.save(theNorthPole);
 
     final FlutterSecureStorage secureStorage = FlutterSecureStorage();
-    final String? itemInSecureStorage = await secureStorage.read(key: 'model.place.key');
+    final String? itemInSecureStorage =
+        await secureStorage.read(key: 'model.place.key');
 
-    final Place retrievedItem = Place.fromJson(jsonDecode(itemInSecureStorage!));
-    final bool keyInSecureStorage = await secureStorage.containsKey(key: 'model.place.key');
+    final Place retrievedItem =
+        Place.fromJson(jsonDecode(itemInSecureStorage!));
+    final bool keyInSecureStorage =
+        await secureStorage.containsKey(key: 'model.place.key');
 
     expect(savedItem, equals(theNorthPole));
     expect(retrievedItem, equals(savedItem));
@@ -99,7 +99,6 @@ void main() {
   });
 
   test("DeleteNonExisting", () async {
-
     expect(storage.delete(), completes);
     expect(await storage.get(), isNull);
   });

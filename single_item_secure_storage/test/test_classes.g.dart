@@ -13,21 +13,21 @@ Place _$PlaceFromJson(Map<String, dynamic> json) {
         ? null
         : Coordinates.fromJson(json['coordinates'] as Map<String, dynamic>),
     nearbyGasPumps:
-    (json['nearbyGasPumps'] as List<dynamic>).map((e) => e as String),
+        (json['nearbyGasPumps'] as List<dynamic>).map((e) => e as String),
     nearbyMcDonalds:
-    (json['nearbyMcDonalds'] as List<dynamic>).map((e) => e as bool),
+        (json['nearbyMcDonalds'] as List<dynamic>).map((e) => e as bool),
     nearbyToilets: (json['nearbyToilets'] as List<dynamic>)
         .map((e) => Coordinates.fromJson(e as Map<String, dynamic>)),
   );
 }
 
 Map<String, dynamic> _$PlaceToJson(Place instance) => <String, dynamic>{
-  'placeName': instance.placeName,
-  'coordinates': instance.coordinates,
-  'nearbyMcDonalds': instance.nearbyMcDonalds,
-  'nearbyGasPumps': instance.nearbyGasPumps,
-  'nearbyToilets': instance.nearbyToilets,
-};
+      'placeName': instance.placeName,
+      'coordinates': instance.coordinates,
+      'nearbyMcDonalds': instance.nearbyMcDonalds,
+      'nearbyGasPumps': instance.nearbyGasPumps,
+      'nearbyToilets': instance.nearbyToilets,
+    };
 
 Coordinates _$CoordinatesFromJson(Map<String, dynamic> json) {
   return Coordinates(

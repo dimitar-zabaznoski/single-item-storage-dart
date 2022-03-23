@@ -1,5 +1,4 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:single_item_secure_storage/src/secure_storage.dart';
 
@@ -17,10 +16,9 @@ void main() {
         .setMockMethodCallHandler(mockMethodHandler());
   });
 
-
   test('unsupported type constructor', () {
     expect(
-          () => SecureStorage<Place>.primitive(itemKey: itemKey),
+      () => SecureStorage<Place>.primitive(itemKey: itemKey),
       throwsAssertionError,
     );
   });
