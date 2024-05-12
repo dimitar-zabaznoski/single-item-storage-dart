@@ -1,3 +1,10 @@
+## 2.0.0
+
+__*Breaking:__
+* Require Dart 3.1
+* Require Flutter >=3.13
+* Require Android SDK 34
+
 ## 0.1.0
 
 * Updated flutter_secure_storage dependency
