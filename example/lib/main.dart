@@ -32,6 +32,8 @@ void main() async {
       itemKey: 'model.user.key.object',
       fromMap: (map) => User.fromMap(map),
       toMap: (item) => item.toMap(),
+      androidOptions: AndroidOptions(encryptedSharedPreferences: true),
+      iosOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
     );
 
     benchmark('Encrypted Object - Save', () => storage.save(User.demo()));
@@ -45,6 +47,8 @@ void main() async {
   {
     Storage<String> storage = SecureStorage<String>.primitive(
       itemKey: 'model.user.key.primitive',
+      androidOptions: AndroidOptions(encryptedSharedPreferences: true),
+      iosOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
     );
 
     final token = User.demo().credentials.token;
@@ -60,6 +64,8 @@ void main() async {
   {
     Storage<String> storage = CachedStorage(SecureStorage.primitive(
       itemKey: 'model.user.key.primitive.cached',
+      androidOptions: AndroidOptions(encryptedSharedPreferences: true),
+      iosOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
     ));
 
     await benchmark('Cached storage - Save', () => storage.save('0123456789'));

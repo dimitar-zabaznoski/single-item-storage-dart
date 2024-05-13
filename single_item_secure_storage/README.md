@@ -55,9 +55,25 @@ _This example uses [json_serializable] as Map converter for convenience._
 
 [json_serializable]: https://pub.dev/packages/json_serializable
 
----
+# Android Usage
 
-**Note on iOS usage**
+### Encrypted Shared Preferences
+
+Configure use of encrypted shared preferences with android options in constructor:
+```
+androidOptions: AndroidOptions(encryptedSharedPreferences: true),
+```
+
+# iOS usage
+
+### Keychain Accessibility
+
+Configure keychain accessibility with iOS options in constructor:
+```
+iosOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
+```
+
+### Secure Storage Lifetime
 
 On iOS the secure storage is not deleted when the app is uninstalled.
 This is sometimes desired and other times not,
