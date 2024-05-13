@@ -1,3 +1,7 @@
+## 2.0.1
+
+* Add privacy policy files for iOS
+
 ## 2.0.0
 
 __*Breaking:__
