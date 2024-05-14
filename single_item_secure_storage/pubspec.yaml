@@ -1,7 +1,7 @@
 name: single_item_secure_storage
 description: Keychain/Keystore persistent Storage implementation.
   Uses `flutter_secure_storage` under a `Storage` abstraction.
-version: 2.0.1
+version: 2.0.2
 homepage: https://github.com/dimitar-zabaznoski/single-item-storage-dart
 
 environment:
@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   single_item_storage: ^2.0.0
-  flutter_secure_storage: ^9.1.1
+  flutter_secure_storage: 9.0.0
 
 dev_dependencies:
   flutter_test:

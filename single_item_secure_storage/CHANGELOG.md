@@ -1,3 +1,7 @@
+## 2.0.2
+
+Fix flutter_secure_storage [issue 709](https://github.com/mogol/flutter_secure_storage/issues/709)
+
 ## 2.0.1
 
 * Add privacy policy files for iOS
