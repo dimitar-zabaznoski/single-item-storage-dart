@@ -1,3 +1,7 @@
+## 2.1.0
+
+* Update minimum supported SDK version to Flutter 3.22/Dart 3.4
+
 ## 2.0.2
 
 Fix flutter_secure_storage [issue 709](https://github.com/mogol/flutter_secure_storage/issues/709)

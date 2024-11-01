@@ -1,3 +1,7 @@
+## 2.1.0
+
+* Update minimum supported SDK version to Flutter 3.22/Dart 3.4
+
 ## 2.0.1
 
 * Add privacy policy files for iOS
