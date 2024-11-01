@@ -1,3 +1,8 @@
+## 2.1.1
+
+* Upgrade pub.lock dependencies
+* Remove dart version <4 restriction 
+
 ## 2.1.0
 
 * Update minimum supported SDK version to Flutter 3.22/Dart 3.4

@@ -1,10 +1,10 @@
 name: single_item_shared_prefs
 description: SharedPreferences/UserDefaults persistent Storage implementation.
-version: 2.1.0
+version: 2.1.1
 homepage: https://github.com/dimitar-zabaznoski/single-item-storage-dart
 
 environment:
-  sdk: '>=3.4.0 <4.0.0'
+  sdk: ^3.4.0
   flutter: ">=3.22.0"
 
 dependencies:
