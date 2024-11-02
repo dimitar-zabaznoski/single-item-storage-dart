@@ -39,6 +39,11 @@ class PrimitivePrefsStorage<E> extends SharedPrefsStorage<E> {
   @override
   Future<E?> get() async {
     await ensurePreferencesSet();
-    return sharedPreferences!.get(itemKey) as E?;
+
+    dynamic item = sharedPreferences!.get(itemKey);
+    if (item is List) {
+      item = (item as List<Object?>?)?.cast<String>().toList();
+    }
+    return item as E?;
   }
 }

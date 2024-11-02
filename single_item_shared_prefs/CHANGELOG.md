@@ -1,3 +1,10 @@
+## 2.1.2
+
+* Fix `getStringList` bug with `List<Object?>` cast exception.
+* The results are cached internally by the [shared_preferences] lib. 
+* This version still uses the deprecated `SharedPreferences.getInstance()`
+  method to maintain backwards compatibility.
+
 ## 2.1.1
 
 * Upgrade pub.lock dependencies
