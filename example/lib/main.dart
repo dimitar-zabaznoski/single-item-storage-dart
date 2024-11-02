@@ -19,9 +19,21 @@ void main() async {
       toMap: (item) => item.toMap(),
     );
 
-    benchmark('SharedPrefs - Save', () => storage.save(User.demo()));
-    benchmark('SharedPrefs - Get', () => storage.get());
-    benchmark('SharedPrefs - Delete', () => storage.delete());
+    await benchmark('SharedPrefs - Save', () => storage.save(User.demo()));
+    await benchmark('SharedPrefs - Get', () => storage.get());
+    await benchmark('SharedPrefs - Delete', () => storage.delete());
+  }
+
+  //
+  // Shared Preferences: List cast bug
+  //
+  {
+    Storage<List<String>> storage =
+        SharedPrefsStorage<List<String>>.primitive(itemKey: 'model.user.key');
+
+    await benchmark('SharedPrefsP - Save', () => storage.save(['a', 'b', 'c']));
+    await benchmark('SharedPrefsP - Get', () => storage.get());
+    await benchmark('SharedPrefsP - Delete', () => storage.delete());
   }
 
   //
@@ -36,9 +48,9 @@ void main() async {
       iosOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
     );
 
-    benchmark('Encrypted Object - Save', () => storage.save(User.demo()));
-    benchmark('Encrypted Object - Get', () => storage.get());
-    benchmark('Encrypted Object - Delete', () => storage.delete());
+    await benchmark('Encrypted Object - Save', () => storage.save(User.demo()));
+    await benchmark('Encrypted Object - Get', () => storage.get());
+    await benchmark('Encrypted Object - Delete', () => storage.delete());
   }
 
   //
@@ -52,9 +64,9 @@ void main() async {
     );
 
     final token = User.demo().credentials.token;
-    benchmark('Encrypted String - Save', () => storage.save(token));
-    benchmark('Encrypted String - Get', () => storage.get());
-    benchmark('Encrypted String - Delete', () => storage.delete());
+    await benchmark('Encrypted String - Save', () => storage.save(token));
+    await benchmark('Encrypted String - Get', () => storage.get());
+    await benchmark('Encrypted String - Delete', () => storage.delete());
   }
 
   // Cached Storage
@@ -75,8 +87,12 @@ void main() async {
 }
 
 Future<void> benchmark(String title, Future operation()) async {
-  Stopwatch stopwatch = Stopwatch()..start();
-  await operation();
-  stopwatch.stop();
-  print('$title elapsedMillis: ${stopwatch.elapsedMilliseconds}');
+  try {
+    Stopwatch stopwatch = Stopwatch()..start();
+    await operation();
+    stopwatch.stop();
+    print('$title elapsedMillis: ${stopwatch.elapsedMilliseconds}');
+  } catch (exp, stackTrace) {
+    print('Error: $exp\n$stackTrace');
+  }
 }
